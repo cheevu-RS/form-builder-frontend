@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import { Row, Label, Input } from 'reactstrap';
 class CheckBox extends React.Component {
     constructor() {
@@ -18,7 +18,7 @@ class CheckBox extends React.Component {
         let change1 = this.state.checkboxes;
         change1[key][1]= !change1[key][1];
         this.setState(change1);
-        console.log(this.state.checkboxes[key]);
+        // console.log(this.state.checkboxes[key]);
         this.props.handleChange(label, this.state.checkboxes );
     }
 
@@ -35,6 +35,12 @@ class CheckBox extends React.Component {
     addOption() {
         this.setState(prevState => ({ checkboxes: [...prevState.checkboxes, ["",false] ]}))
     }
+    deleteBtn(key){
+        let f = this.state.checkboxes
+        f.splice(key,1);
+        console.log(f);
+        this.setState(f);
+    }
     render() {
         return (
             <div>
@@ -44,6 +50,7 @@ class CheckBox extends React.Component {
                 return <Row>
                 <Input type="checkbox" checked={this.state.checkboxes[key][1]} onInput={this.handleCheck.bind(this, this.props.label, key)} />
                 <Input key={key} type="text" placeholder="Option" onChange={this.handleLabel.bind(this, this.props.label, key)} />
+                <Input type="button" value="Remove" onClick={this.deleteBtn.bind(this,key)} />
                 </Row>
               })
               }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form1 from './components/form'
+import Routes from './routes'
 import 'bootstrap/dist/css/bootstrap.min.css';
-ReactDOM.render(<Form1 />, document.getElementById('root'));
+
+ReactDOM.render(<Routes />, document.getElementById('root'));
