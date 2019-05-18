@@ -1,4 +1,8 @@
 import React from 'react';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
+import '../css/style.css'
 class Home extends React.Component {
     constructor(props) {
     super(props);
@@ -7,11 +11,16 @@ class Home extends React.Component {
   changeRoute = (path) => {
     this.props.history.push(path);
   }
+  
     render() {
-        return (<div>
-            Click here to create forms<br />
-            <input type="button" value="createForm" onClick={this.changeRoute.bind(this,'/create')} />
-            </div>)
+        return (
+          <div style={{padding:"50px",textAlign:"center"}}><Card >
+            <h1> Welcome to Form builder</h1>
+            <Card><Button onClick={this.changeRoute.bind(this,'/create')} >create form</Button></Card>
+            <Card><Button onClick={this.changeRoute.bind(this,'/explore')}> view forms</Button></Card>
+            </Card></div>
+            )
+
     }
 }
 export default Home

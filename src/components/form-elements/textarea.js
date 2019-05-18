@@ -9,8 +9,9 @@ class TextArea extends React.Component {
     render() {
         return (
             <div>
-                <Label>{this.props.label}</Label>
+                <Label style={{fontWeight:"bold"}}>{this.props.label}</Label>
                 <Input
+                    style={{width : "75%", margin: "auto"}}
                     type="textarea"
                     onChange={this.handleChange.bind(this,this.props.label)}
                     />

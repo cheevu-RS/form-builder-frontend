@@ -1,5 +1,5 @@
 import React from "react"
-import { Row, Label, Input } from 'reactstrap';
+import { Row, Label, Input, Button } from 'reactstrap';
 class CheckBox extends React.Component {
     constructor() {
         super();
@@ -25,11 +25,11 @@ class CheckBox extends React.Component {
     handleLabel(label, key, e) {
         e.preventDefault();
         const val = e.target.value;
-        console.log(val+" "+key);
+        // console.log(val+" "+key);
         let change = this.state.checkboxes;
         change[key][0]= val;
         this.setState(change);
-        console.log(this.state.checkboxes[key]);
+        // console.log(this.state.checkboxes[key]);
         this.props.handleChange(label, this.state.checkboxes );
     }
     addOption() {
@@ -44,17 +44,17 @@ class CheckBox extends React.Component {
     render() {
         return (
             <div>
-                <Label>{this.props.label}</Label><br/>
+                <Label style={{fontWeight:"bold"}}>{this.props.label}</Label><br/>
               {
               Object.keys(this.state.checkboxes).map((key, value) => {
-                return <Row>
+                return <Row style={{width:"80%",margin:"auto"}}>
                 <Input type="checkbox" checked={this.state.checkboxes[key][1]} onInput={this.handleCheck.bind(this, this.props.label, key)} />
-                <Input key={key} type="text" placeholder="Option" onChange={this.handleLabel.bind(this, this.props.label, key)} />
-                <Input type="button" value="Remove" onClick={this.deleteBtn.bind(this,key)} />
+                <Input  style={{width : "75%", margin: "auto"}} key={key} type="text" placeholder="Option" onChange={this.handleLabel.bind(this, this.props.label, key)} />
+                <Button close onClick={this.deleteBtn.bind(this,key)} />
                 </Row>
               })
               }
-            <Input type="button" onClick={this.addOption} value="Add option"/>
+            <Button onClick={this.addOption} >Add option</Button>
           </div>
         )
     }

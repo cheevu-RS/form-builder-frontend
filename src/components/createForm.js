@@ -9,9 +9,9 @@ class CreateForm extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
-      fields : [["","FORMID","formid"]
-          // ["Name of Form","TextBox",""],
-          // ["Description","TextArea",""],
+      fields : [["formId","FORMID",""],
+          ["Title","TextBox",""],
+          ["Description","TextArea",""],
         ],
       dropdownOpen: false,
       newLabel: "",
@@ -27,7 +27,7 @@ class CreateForm extends React.Component {
   }
     changeFormID(){
       let a = this.state.fields
-      a[0][0]= Math.random().toString(36).substring(2, 15);
+      a[0][2]= Math.random().toString(36).substring(2, 15);
       this.setState(a);
     }
     addButton(type){
@@ -61,62 +61,40 @@ class CreateForm extends React.Component {
     }
     handleSubmit(event) {
         // console.log(this.state.fields);
+        this.changeFormID();
         event.preventDefault();
         console.log(this.state.fields);
-        let f=0
-        Object.keys(this.state.fields).map((key) => {
-          if(this.state.fields[key][2] === "")
-          {PNotify.alert({
-            type:"error",
-            title: "Error",
-            text:  "Field '"+this.state.fields[key][0]+"' is empty",
-          });
-          f=1}
-        });
         const axios = require('axios');
-        if(f === 0)
-        { 
-          /*
-          convert state to single quotes, so as to use in json object
-          */
-          // let state = JSON.stringify(this.state.fields)
-          // let newState = state.replace(/"/g, "'");
-          // console.log(newState);
-
-          // let data = '{"id":"'+Math.random().toString(36).substring(2, 15)+'","data":"'+newState+'"}'
-          // console.log(data);
-          axios.post('/create_form', this.state.fields)
-            .then(function (response) {
-              // handle success
-              console.log(response);
-              let res = JSON.parse(response['data']);
-              if(res['code'] === 0)
-              {
-                PNotify.alert({
-                type:"error",
-                title: "Error",
-                text:  res['mess'],
-              });
-              }
-              else if(res['code'] === 1)
-              {PNotify.alert({
-                type:"success",
-                title: "Success",
-                text:  res['mess'],
-              });
-            }
-              console.log(response);
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
-            .finally(() => {
-              // always executed
-              this.changeFormID();
-              console.log("fin");
+        axios.post('/create_form', this.state.fields)
+          .then(function (response) {
+            // handle success
+            console.log(response);
+            let res = JSON.parse(response['data']);
+            if(res['code'] === 0)
+            {
+              PNotify.alert({
+              type:"error",
+              title: "Error",
+              text:  res['mess'],
             });
-        }
+            }
+            else if(res['code'] === 1)
+            {PNotify.alert({
+              type:"success",
+              title: "Success",
+              text:  res['mess'],
+            });
+          }
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(() => {
+            // always executed
+            this.changeFormID();
+            console.log("fin");
+          });
       }
     handleChange(label, value) {
       const f = this.state.fields;
@@ -131,33 +109,32 @@ class CreateForm extends React.Component {
       })
     }
     render() {
-        return (<div>
+        return (<div style={{"margin":"4vh",textAlign: "center"}} className="mainDiv">
         <div className="jumbotron">
         <h1>Create Form</h1>
         </div>
-        <Form>
             {   
                 Object.keys(this.state.fields).map((key) => {
                     if(this.state.fields[key][1] === "TextBox")
-                    return <div>
+                    return <div style={{"margin":"4vh"}}>
                       <TextBox handleChange={this.handleChange} label={this.state.fields[key][0]} />
-                      <Input type="button" value="Remove" onClick={this.deleteBtn.bind(this,key)} />
+                      <Button onClick={this.deleteBtn.bind(this,key)} >Remove </Button>
                     </div>
                     else if(this.state.fields[key][1] === "TextArea")
-                    return <div>
+                    return <div style={{"margin":"4vh"}}>
                      <TextArea handleChange={this.handleChange} label={this.state.fields[key][0]} />
-                    <Input type="button"value="Remove" onClick={this.deleteBtn.bind(this,key)} />
+                    <Button onClick={this.deleteBtn.bind(this,key)}>Remove</Button>
                     </div>
                     else if(this.state.fields[key][1] === "CheckBox")
-                    return <div>
+                    return <div style={{"margin":"4vh"}}>
                     <CheckBox handleChange={this.handleChange} label={this.state.fields[key][0]} />
-                    <Input type="button" value="Remove" onClick={this.deleteBtn.bind(this,key)} />
+                    <Button onClick={this.deleteBtn.bind(this,key)} >Remove </Button>
                     </div>
                     return null
             })
             }
 
-            <Input type="text" placeholder="newLabel" onChange={this.newLabelChange.bind(this)}/>
+            <Input  style={{width : "75%", margin: "auto"}} type="text" placeholder="newLabel" onChange={this.newLabelChange.bind(this)}/>
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle caret>
                 Add another input
@@ -170,8 +147,7 @@ class CreateForm extends React.Component {
                 <DropdownItem onClick={this.addButton.bind(this,"CheckBox")}>CheckBox</DropdownItem>
                 </DropdownMenu>
             </ButtonDropdown><br></br>
-            <Input onClick={this.handleSubmit} type="submit" value="Save Form" /> 
-        </Form>
+            <Button style={{ margin: "4vh"}} onClick={this.handleSubmit}>Save Form</Button> 
         </div>
         )
     }
