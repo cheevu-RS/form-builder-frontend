@@ -94,7 +94,7 @@ class ViewResponses extends React.Component {
                     {   
                       let res = this.splitFUn(this.state.forms[key]);
                       return <div>
-                          <h1>{res[0]}</h1>
+                          <h1>{res[0]}</h1><hr style={{border: "4px solid blue;" }}/>
                           { 
                             Object.keys(this.state.responses).map((keys) => {
                               return <div><Label>
@@ -126,7 +126,7 @@ class ViewResponses extends React.Component {
                                 </div>)
                             })
                           } 
-                          
+                          <hr style={{border: "4px solid blue;" }}/>
                         </div>
                     }
           })
