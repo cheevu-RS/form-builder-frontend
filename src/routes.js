@@ -4,7 +4,7 @@ import SubmitResponse from './components/submitResponse'
 import ViewResponses from './components/viewResponses'
 import CreateForm from './components/createForm'
 import ExploreForms from './components/exploreForms'
-// import PageNotFound from './components/pageNotFound'
+import PageNotFound from './components/pageNotFound'
 import Home from './components/home'
 
 
@@ -18,7 +18,7 @@ class Routes extends React.Component{
           <Route exact path={'/create'} component={CreateForm} />
           <Route exact path={'/explore'} component={ExploreForms} />
           <Route exact path={'/'} component={Home} />
-          {/* <Route component={PageNotFound} /> */}
+          <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>
     );
