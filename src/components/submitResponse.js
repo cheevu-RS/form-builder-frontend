@@ -125,7 +125,7 @@ class SubmitResponse extends React.Component {
 
   render(){
     let checks
-    return (<div style={{"margin":"4vh",textAlign: "center"}} class="mainDiv">
+    return (<div class="mainDiv">
               <h1>{this.state.name}</h1>     
               <h3>{this.state.desc}</h3>
               {  

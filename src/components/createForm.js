@@ -109,7 +109,7 @@ class CreateForm extends React.Component {
       })
     }
     render() {
-        return (<div style={{"margin":"4vh",textAlign: "center"}} className="mainDiv">
+        return (<div className="mainDiv">
         <div className="jumbotron">
         <h1>Create Form</h1>
         </div>

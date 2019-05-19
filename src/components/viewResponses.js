@@ -82,7 +82,7 @@ class ViewResponses extends React.Component {
   }
   render()
   {
-      return <div style={{"margin":"4vh",textAlign: "center"}} class="mainDiv">
+      return <div class="mainDiv">
           <h1>{this.state.name}</h1>
           <h3>{this.state.desc}</h3>
           <hr style={{border: "4px solid blue;" }}/>

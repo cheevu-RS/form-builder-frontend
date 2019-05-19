@@ -47,7 +47,7 @@ class ExploreForms extends React.Component {
   }
   render()
   {
-      return <div style={{"margin":"4vh",textAlign: "center"}} class="mainDiv">
+      return <div class="mainDiv">
           {
           Object.keys(this.state.forms).map((key) => {
               console.log(this.state.forms)

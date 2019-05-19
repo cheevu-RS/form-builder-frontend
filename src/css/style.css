@@ -7,6 +7,8 @@ body{
 }
 .mainDiv{
     background: #e9ecef;
+    margin:8vh;
+    text-align: center; 
 }
 .centered {
     display:flex;
