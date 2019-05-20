@@ -18,6 +18,7 @@ class ViewResponses extends React.Component {
   componentDidMount(){
     let formId = this.props.location['pathname'].split(':')[1];
     // console.log(formId)
+    console.log(typeof({"formId":formId}));
     axios.post('http://aaveg.net:6801/getResponses',{"formId":formId})
       .then((response) => {
         // console.log(response);
