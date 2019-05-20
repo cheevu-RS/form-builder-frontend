@@ -19,7 +19,7 @@ class SubmitResponse extends React.Component {
   }
   componentDidMount(){
     let formId = this.props.location['pathname'].split(':')[1];
-    axios.post('http://aaveg.net:6801/getFields',{"data":formId})
+    axios.post('http://localhost:6801/getFields',{"data":formId})
       .then((response) => {
         console.log(response);
         let res = JSON.parse(response['data']);
@@ -91,7 +91,7 @@ class SubmitResponse extends React.Component {
     });
     const data = {"formID":formId,"fields":this.state.fields};
     console.log(data);
-    axios.post('http://aaveg.net:6801/submitResponse',data)
+    axios.post('http://localhost:6801/submitResponse',data)
       .then(function (response) {
         // handle success
         console.log(response);

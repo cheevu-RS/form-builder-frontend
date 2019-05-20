@@ -11,7 +11,7 @@ class ExploreForms extends React.Component {
     this.changeRoute = this.changeRoute.bind(this);
   }
   componentDidMount(){
-    axios.get('http://aaveg.net:6801/getForms')
+    axios.get('http://localhost:6801/getForms')
       .then((response) => {
         console.log(response);
         let res = JSON.parse(response['data']);

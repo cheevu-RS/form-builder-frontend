@@ -65,7 +65,7 @@ class CreateForm extends React.Component {
         event.preventDefault();
         console.log(this.state.fields);
         const axios = require('axios');
-        axios.post('http://aaveg.net:6801/create_form', this.state.fields)
+        axios.post('http://localhost:6801/create_form', this.state.fields)
           .then(function (response) {
             // handle success
             console.log(response);
