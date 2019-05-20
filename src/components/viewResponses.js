@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PNotify from 'pnotify/dist/es/PNotify';
-import { Container, Label} from 'reactstrap';
+import { Label} from 'reactstrap';
 class ViewResponses extends React.Component {
     constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class ViewResponses extends React.Component {
   componentDidMount(){
     let formId = this.props.location['pathname'].split(':')[1];
     // console.log(formId)
-    axios.post('/getResponses',{"formId":formId})
+    axios.post('http://localhost:6801/getResponses',{"formId":formId})
       .then((response) => {
         // console.log(response);
         let res = JSON.parse(response['data']);
@@ -100,11 +100,9 @@ class ViewResponses extends React.Component {
                               return <div><Label>
                               {
                                 Object.keys(this.splitFUn(this.state.responses[keys][key])).map((t)=>{
-                                   {
                                     console.log(this.splitFUn(this.state.responses[keys][key])[t]);
                                     if(this.splitFUn(this.state.responses[keys][key])[t].replace(/ /g,'') === "True")
                                     return <div>{res[parseInt(t)+1]}</div>
-                                    }
                                 })
                               }
                               <hr style={{border: "4px solid blue;" }}/>

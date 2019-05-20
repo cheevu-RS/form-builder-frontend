@@ -2,7 +2,7 @@ import React from "react"
 import TextBox from './form-elements/textbox'
 import CheckBox from './form-elements/checkbox'
 import TextArea from './form-elements/textarea'
-import { Form, Input} from 'reactstrap';
+import { Input} from 'reactstrap';
 import {Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import PNotify from 'pnotify/dist/es/PNotify';
 class CreateForm extends React.Component {
@@ -65,7 +65,7 @@ class CreateForm extends React.Component {
         event.preventDefault();
         console.log(this.state.fields);
         const axios = require('axios');
-        axios.post('/create_form', this.state.fields)
+        axios.post('http://localhost:6801/create_form', this.state.fields)
           .then(function (response) {
             // handle success
             console.log(response);

@@ -4,7 +4,7 @@ import PNotify from 'pnotify/dist/es/PNotify';
 import TextBox from './form-elements/textbox'
 
 import TextArea from './form-elements/textarea'
-import { Label, Form, Input} from 'reactstrap';
+import { Label, Input} from 'reactstrap';
 class SubmitResponse extends React.Component {
     constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class SubmitResponse extends React.Component {
   }
   componentDidMount(){
     let formId = this.props.location['pathname'].split(':')[1];
-    axios.post('/getFields',{"data":formId})
+    axios.post('http://localhost:6801/getFields',{"data":formId})
       .then((response) => {
         console.log(response);
         let res = JSON.parse(response['data']);
@@ -91,7 +91,7 @@ class SubmitResponse extends React.Component {
     });
     const data = {"formID":formId,"fields":this.state.fields};
     console.log(data);
-    axios.post('/submitResponse',data)
+    axios.post('http://localhost:6801/submitResponse',data)
       .then(function (response) {
         // handle success
         console.log(response);

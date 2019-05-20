@@ -1,7 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
-import { Container, Row } from 'reactstrap';
+import { Card, } from 'reactstrap';
 import '../css/style.css'
 class PageNotFound extends React.Component {
     constructor(props) {
